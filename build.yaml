@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['build']
+  dir: 'ang'
+- name: 'gcr.io/cloud-builders/mvn'
+  args: ['install']
+  dir: 'helloworld-springboot'
