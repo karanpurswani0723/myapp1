@@ -6,5 +6,9 @@ steps:
   args: ['run-script', 'build']
   dir: 'ang'  
 - name: 'gcr.io/cloud-builders/mvn'
-  args: ['appengine:deploy']
+  args: ['package']
   dir: 'helloworld-springboot'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'bash'
+  args: ['-c', 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy helloworld-springboot/target/helloworld-springboot-0.0.1-SNAPSHOT.jar']
+timeout: '1600s'
